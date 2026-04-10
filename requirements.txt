@@ -1,5 +1,0 @@
-finam-trade-api
-pandas
-pytz
-pytest
-pytest-asyncio

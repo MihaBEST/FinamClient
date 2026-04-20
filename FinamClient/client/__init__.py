@@ -9,10 +9,10 @@ from .stock import get_orderbook, get_latest_quote, get_latest_trades, get_all_a
 
 
 class Client:
-    def __init__(self, api_secret: str):
+    def __init__(self, api_secret: str, account_id: str = None):
         self.api_secret = api_secret
         self._token = None
-        self.account_id = None
+        self.account_id = account_id
         self._initialize()
 
     def _initialize(self):
@@ -35,6 +35,8 @@ class Client:
         return response.json()["token"]
 
     def _fetch_account_id(self):
+        if self.account_id:
+            return
         token = self._get_token()
         headers = {
             "Authorization": f"Bearer {token}",
